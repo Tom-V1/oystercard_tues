@@ -2,8 +2,9 @@ class Oystercard
 
   attr_reader :balance
 
-  MAXIMUM_BALANCE = 90
+  MAXIMUM_BALANCE = 90 
 
+  FAIR = 1
  
   def initialize
     @balance = 0
@@ -20,10 +21,12 @@ class Oystercard
   end
 
   def touch_in
+    fail "Insufficient balance to touch in" if balance < FAIR
     @journey = true
   end 
 
   def touch_out
+
     @journey = false
   end 
 
@@ -32,6 +35,8 @@ class Oystercard
   end
 
   private 
+
+
 
   def balance_check(money)
     amount = @balance + money
